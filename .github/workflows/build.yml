@@ -16,12 +16,13 @@ jobs:
         submodules: true
 
     - name: Git Version
+      id: gitverion
       uses: codacy/git-version@2.2.0
       with:
         release-branch: main
 
     - name: Echo version
-      run: echo $VERSION
+      run: echo ${{ steps.gitversion.outputs.version }}
 
     # Install the .NET Core workload
     - name: Install .NET Core
