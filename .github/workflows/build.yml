@@ -1,0 +1,35 @@
+name: BuildPush
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
+        fetch-depth: 0
+
+    - name: Git Version
+      uses: codacy/git-version@2.2.0
+
+    # Install the .NET Core workload
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.x
+
+    - name: Build the package
+      run: dotnet build ArmoniK.Api/Api/csharp/ArmoniK.Api/ArmoniK.Api.csproj -c Release
+
+    - name: Pack the package
+      run: |
+        dotnet pack ArmoniK.Api/Api/csharp/ArmoniK.Api/ArmoniK.Api.csproj -c Release -o /tmp/packages -p:PackageVersion=$(./git-version)
+        ls /tmp/packages
