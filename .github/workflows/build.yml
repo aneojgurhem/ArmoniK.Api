@@ -21,6 +21,7 @@ jobs:
         VERSION=$(docker run --rm -v $(pwd):/repo codacy/git-version /bin/git-version --folder=/repo --release-branch=main --dev-branch=dev) 
         echo "::set-output name=version::$VERSION"
         echo $VERSION
+
  
   build:
     runs-on: ubuntu-latest
