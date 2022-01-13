@@ -13,6 +13,7 @@ jobs:
       with:
         ref: ${{ github.head_ref }}
         fetch-depth: 0
+        submodules: true
 
     - name: Git Version
       uses: codacy/git-version@2.2.0
