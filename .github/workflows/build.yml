@@ -28,9 +28,10 @@ jobs:
       uses: codacy/git-version@2.2.0
       with:
         release-branch: main
+      run: env
 
     - name: run gitversion
-      run: ./git-version
+      run: env
 
 
     # Install the .NET Core workload
