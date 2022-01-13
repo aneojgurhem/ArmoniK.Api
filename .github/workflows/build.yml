@@ -28,9 +28,6 @@ jobs:
     needs: versionning
     env:
       VERSION: ${{ needs.versionning.outputs.version }}
-    strategy:
-      matrix:
-        Configuration: ['Release']
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -45,11 +42,11 @@ jobs:
         dotnet-version: 6.x
 
     - name: Build the package
-      run: dotnet build Api/csharp/ArmoniK.Api/ArmoniK.Api.csproj -c ${{ matrix.Configuration }}
+      run: dotnet build Api/csharp/ArmoniK.Api/ArmoniK.Api.csproj -c Release
 
     - name: Pack the package
       run: |
-        dotnet pack Api/csharp/ArmoniK.Api/ArmoniK.Api.csproj -c ${{ matrix.Configuration }} -o /tmp/packages -p:PackageVersion=$VERSION
+        dotnet pack Api/csharp/ArmoniK.Api/ArmoniK.Api.csproj -c Release -o /tmp/packages -p:PackageVersion=$VERSION
         ls /tmp/packages
 
     - name: Push the package
