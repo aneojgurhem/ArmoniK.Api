@@ -15,14 +15,6 @@ jobs:
         fetch-depth: 0
         submodules: true
 
-#    - name: Install GitVersion
-#      uses: gittools/actions/gitversion/setup@v0.9.7
-#      with:
-#        versionSpec: '5.x'
-#
-#    - name: Determine Version
-#      uses: gittools/actions/gitversion/execute@v0.9.7
-
     - name: Git Version
       id: gitverion
       uses: codacy/git-version@2.2.0
@@ -31,7 +23,6 @@ jobs:
 
     - name: run gitversion
       run: env
-
 
     # Install the .NET Core workload
     - name: Install .NET Core
