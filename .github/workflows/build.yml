@@ -15,14 +15,12 @@ jobs:
         fetch-depth: 0
         submodules: true
 
-    - name: Git Version
-      id: gitverion
-      uses: codacy/git-version@2.2.0
-      with:
-        release-branch: main
+    - name: Determine Version
+      uses: gittools/actions/gitversion/execute@v0.9.7
 
-    - name: Echo version
-      run: echo ${{ steps.gitversion.outputs.version }}
+    - name: Display SemVer
+      run: |
+        echo "SemVer: $GITVERSION_SEMVER"
 
     # Install the .NET Core workload
     - name: Install .NET Core
