@@ -18,8 +18,10 @@ jobs:
     - name: Generate Version
       id: genver
       run: |
+        ls -laGhF
         VERSION=$(docker run --rm -v $(pwd):/repo codacy/git-version /bin/git-version --folder=/repo --release-branch=main --dev-branch=small_patch) 
         echo "::set-output name=version::$VERSION"
+        echo $VERSION
         
 
 
