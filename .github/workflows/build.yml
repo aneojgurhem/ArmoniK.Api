@@ -53,7 +53,7 @@ jobs:
         ls /tmp/packages
 
     - name: Push the package
-      run: dotnet nuget push /tmp/packages/ArmoniK.Api*.nupkg --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --skip-duplicate
+      run: dotnet nuget push /tmp/packages/ArmoniK.Api*.nupkg -k ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --skip-duplicate
 
   tag:
     runs-on: ubuntu-latest
