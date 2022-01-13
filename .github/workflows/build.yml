@@ -57,6 +57,11 @@ jobs:
     env:
       VERSION: ${{ needs.versionning.outputs.version }}
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
+
     - name: tag
       run: |
         git tag $VERSION
